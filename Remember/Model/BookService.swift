@@ -72,9 +72,6 @@ private actor BookServiceStore {
         }
         
     }
-    
-   
-    
 }
 
 /// All the available roots on the server.

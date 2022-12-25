@@ -11,8 +11,9 @@
 		939700A82957ACB000489AA5 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939700A72957ACB000489AA5 /* CardView.swift */; };
 		939700AA2957AE6500489AA5 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939700A92957AE6500489AA5 /* Card.swift */; };
 		939700AC2957B3D900489AA5 /* AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939700AB2957B3D900489AA5 /* AverageColor.swift */; };
-		939700AE2957C97F00489AA5 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939700AD2957C97F00489AA5 /* NavigationStack.swift */; };
 		939700B02957E04700489AA5 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939700AF2957E04700489AA5 /* Test.swift */; };
+		939700B729581AA300489AA5 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939700B629581AA300489AA5 /* TestView.swift */; };
+		939700B929581F0B00489AA5 /* ExpandableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939700B829581F0B00489AA5 /* ExpandableText.swift */; };
 		93DFE5952953881F00F83EEC /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DFE5942953881F00F83EEC /* HomePage.swift */; };
 		93DFE5972953907400F83EEC /* DetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DFE5962953907400F83EEC /* DetailPage.swift */; };
 		93DFE5992953909000F83EEC /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DFE5982953909000F83EEC /* Book.swift */; };
@@ -25,10 +26,7 @@
 		93F2EE53293AD29600E06220 /* RememberUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2EE52293AD29600E06220 /* RememberUITestsLaunchTests.swift */; };
 		93F2EE63293AD30400E06220 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2EE62293AD30400E06220 /* BookService.swift */; };
 		93F2EE65293ADD5000E06220 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2EE64293ADD5000E06220 /* AppManager.swift */; };
-		93F2EE6A293ADF9C00E06220 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2EE69293ADF9C00E06220 /* AsyncButton.swift */; };
 		93F2EE6E293AE33C00E06220 /* CodableTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2EE6D293AE33C00E06220 /* CodableTypes.swift */; };
-		93F2EE70293AE9F300E06220 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2EE6F293AE9F300E06220 /* ImageService.swift */; };
-		93F2EE73293AEA2E00E06220 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 93F2EE72293AEA2E00E06220 /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +51,9 @@
 		939700A72957ACB000489AA5 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		939700A92957AE6500489AA5 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		939700AB2957B3D900489AA5 /* AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageColor.swift; sourceTree = "<group>"; };
-		939700AD2957C97F00489AA5 /* NavigationStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStack.swift; sourceTree = "<group>"; };
 		939700AF2957E04700489AA5 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		939700B629581AA300489AA5 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		939700B829581F0B00489AA5 /* ExpandableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableText.swift; sourceTree = "<group>"; };
 		93DFE5942953881F00F83EEC /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		93DFE5962953907400F83EEC /* DetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPage.swift; sourceTree = "<group>"; };
 		93DFE5982953909000F83EEC /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -70,9 +69,7 @@
 		93F2EE52293AD29600E06220 /* RememberUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RememberUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		93F2EE62293AD30400E06220 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
 		93F2EE64293ADD5000E06220 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
-		93F2EE69293ADF9C00E06220 /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		93F2EE6D293AE33C00E06220 /* CodableTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTypes.swift; sourceTree = "<group>"; };
-		93F2EE6F293AE9F300E06220 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		93F2EE74293AFA4500E06220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +78,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93F2EE73293AEA2E00E06220 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,13 +170,13 @@
 		93F2EE60293AD2DB00E06220 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				93F2EE69293ADF9C00E06220 /* AsyncButton.swift */,
 				93DFE5942953881F00F83EEC /* HomePage.swift */,
 				93DFE5962953907400F83EEC /* DetailPage.swift */,
 				939700A52957AC7100489AA5 /* SnapCarousel.swift */,
 				939700A72957ACB000489AA5 /* CardView.swift */,
 				939700A92957AE6500489AA5 /* Card.swift */,
-				939700AD2957C97F00489AA5 /* NavigationStack.swift */,
+				939700B629581AA300489AA5 /* TestView.swift */,
+				939700B829581F0B00489AA5 /* ExpandableText.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -190,7 +186,6 @@
 			children = (
 				93F2EE6D293AE33C00E06220 /* CodableTypes.swift */,
 				93F2EE62293AD30400E06220 /* BookService.swift */,
-				93F2EE6F293AE9F300E06220 /* ImageService.swift */,
 				939700AF2957E04700489AA5 /* Test.swift */,
 				93DFE5982953909000F83EEC /* Book.swift */,
 			);
@@ -214,7 +209,6 @@
 			);
 			name = Remember;
 			packageProductDependencies = (
-				93F2EE72293AEA2E00E06220 /* SwiftSoup */,
 			);
 			productName = Remember;
 			productReference = 93F2EE32293AD29400E06220 /* Remember.app */;
@@ -289,7 +283,6 @@
 			);
 			mainGroup = 93F2EE29293AD29400E06220;
 			packageReferences = (
-				93F2EE71293AEA2E00E06220 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 93F2EE33293AD29400E06220 /* Products */;
 			projectDirPath = "";
@@ -333,20 +326,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				939700B729581AA300489AA5 /* TestView.swift in Sources */,
 				93F2EE38293AD29400E06220 /* ContentView.swift in Sources */,
 				939700A62957AC7100489AA5 /* SnapCarousel.swift in Sources */,
 				939700A82957ACB000489AA5 /* CardView.swift in Sources */,
 				93F2EE36293AD29400E06220 /* RememberApp.swift in Sources */,
 				939700AA2957AE6500489AA5 /* Card.swift in Sources */,
 				939700B02957E04700489AA5 /* Test.swift in Sources */,
-				93F2EE6A293ADF9C00E06220 /* AsyncButton.swift in Sources */,
 				93F2EE63293AD30400E06220 /* BookService.swift in Sources */,
 				939700AC2957B3D900489AA5 /* AverageColor.swift in Sources */,
 				93F2EE65293ADD5000E06220 /* AppManager.swift in Sources */,
 				93F2EE6E293AE33C00E06220 /* CodableTypes.swift in Sources */,
-				939700AE2957C97F00489AA5 /* NavigationStack.swift in Sources */,
+				939700B929581F0B00489AA5 /* ExpandableText.swift in Sources */,
 				93DFE5972953907400F83EEC /* DetailPage.swift in Sources */,
-				93F2EE70293AE9F300E06220 /* ImageService.swift in Sources */,
 				93DFE5992953909000F83EEC /* Book.swift in Sources */,
 				93DFE5952953881F00F83EEC /* HomePage.swift in Sources */,
 			);
@@ -675,25 +667,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		93F2EE71293AEA2E00E06220 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/scinfu/SwiftSoup";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		93F2EE72293AEA2E00E06220 /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 93F2EE71293AEA2E00E06220 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 93F2EE2A293AD29400E06220 /* Project object */;
 }

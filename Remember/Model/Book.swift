@@ -6,15 +6,29 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 struct BookDetails: Identifiable {
     
     static let example = BookDetails(title: "Harry Potter AND THE PRISONER OF AZKABAN",
-     description: "For twelve long years, the dread fortress of Azkaban held an infamous prisoner named Sirius Black. Convicted of killing thirteen people with a single curse, he was said to be the heir apparent",
-     imageURL: "https://images.ctfassets.net/usf1vwtuqyxm/24YWmI4UcyoMwj7wdKrEcL/374de1941927db12bd844fb197eab11f/English_Harry_Potter_3_Epub_9781781100233.jpg",
+     description: """
+    For twelve long years, the dread fortress of Azkaban held an infamous prisoner named Sirius Black. Convicted of killing thirteen people with a single curse, he was said to be the heir apparent to the Dark Lord, Voldemort.
+    Now he has escaped, leaving only two clues as to where he might be headed: Harry Potter’s defeat of You-Know-Who was Black’s downfall as well. And the Azkaban guards heard Black muttering in his sleep, “He’s at Hogwarts… he’s at Hogwarts.”
+    Harry Potter isn’t safe, not even within the walls of his magical school, surrounded by his friends. Because on top of it all, there may be a traitor in their midst.
+    """,
+     imageURL: "https://www.pottermorepublishing.com/wp-content/covers/web/9781781100516.jpg",
      author: "J.K. Rowling",
      releaseDate: "1999")
+    
+    static let example2 = BookDetails(title: "Atomic Habits",
+     description: """
+    The #1 New York Times bestseller. Over 4 million copies sold! - No matter your goals, Atomic Habits offers a proven framework for improving--every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results. - If you're having trouble changing your habits, the problem isn't you. The problem is your system. Bad habits repeat themselves again and again not because you don't want to change, but because you have the wrong system for change. ou do not rise to the level of your goals. You fall to the level of your systems. Here, you'll get a proven system that can take you to new heights. - Clear is known for his ability to distill complex topics into simple behaviors that can be easily applied to daily life and work. Here, he draws on the most proven ideas from biology, psychology, and neuroscience to create an easy-to-understand guide for making good habits inevitable and bad habits impossible. Along the way, readers will be inspired and entertained with true stories from Olympic gold medalists, award-winning artists, business leaders, life-saving physicians, and star comedians who have used the science of small habits to master their craft and vault to the top of their field.
+    """,
+     imageURL: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRHssyxg4DlFMZNDTEBwRAdLlvyM_NxC7ZJy01avfoeurd2QMIsYbkVTM5D4YVpgTbnqOygM1Tbvr5Pcu_buHWPUgMZSBZiNdeXvhtudsU&usqp=CAE",
+     author: "James Clear",
+     releaseDate: "2018")
+    
     
     let id = UUID()
     let title: String
@@ -23,9 +37,27 @@ struct BookDetails: Identifiable {
     let author: String
     let releaseDate: String
     
+    let foreground: Color
+    let colorScheme: ColorScheme
+    
     var rating = 4
     var quotes = [Quote]()
     var relatedBooks = [BookDetails]()
+    
+    init(title: String, description: String, imageURL: String, author: String, releaseDate: String, rating: Int = 4, quotes: [Quote] = [Quote](), relatedBooks: [BookDetails] = [BookDetails]()) {
+        self.title = title
+        self.description = description
+        self.imageURL = imageURL
+        self.author = author
+        self.releaseDate = releaseDate
+        self.rating = rating
+        self.quotes = quotes
+        self.relatedBooks = relatedBooks
+        
+        foreground = AverageColor.getColor(url: imageURL)
+        colorScheme = (foreground == .black) ? .light : .dark
+    }
+    
 }
 
 struct Quote {

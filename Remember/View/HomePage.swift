@@ -12,24 +12,22 @@ struct HomePage: View {
     @State private var mode: ColorScheme = .dark
     @StateObject var manager = AppManager()
     
-    var book = BookDetails.example
-
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                if true {
+                if manager.showDetail {
                     
                     Text("REMEMBER")
+                        .foregroundColor(.white)
                         .kerning(5)
                         .font(.headline)
-                        .foregroundColor(.white)
                         .offset(x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 30.0)
                     
-                    TabView {
-                        NavigationLink(destination: DetailPage().environmentObject(manager)) {
-                            CoverArt(book: book)
-                       }
-                        Text("Hey")
+                    TabView(selection: $selection) {
+                        ForEach(Array(manager.books.enumerated()), id: \.offset) { index, book in
+                            CoverArt(book: book).environmentObject(manager)
+                                .tag(index)
+                        }
                     }
                     .frame(height: 500)
                     .tabViewStyle(PageTabViewStyle())
@@ -39,10 +37,17 @@ struct HomePage: View {
                 }
             }
         }
-        .preferredColorScheme(getAverageColor())
+        .onChange(of: selection) { newValue in
+            manager.currentBook = manager.books[newValue]
+            
+            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                impactMed.impactOccurred()
+        }
+        .preferredColorScheme(manager.currentBook.colorScheme)
+        .foregroundColor(AverageColor.getColor(url: manager.currentBook.imageURL))
         .background {
             AsyncImage(
-                url:URL(string: book.imageURL),
+                url:URL(string: manager.books[selection].imageURL),
                 content: { image in
                     image.resizable()
                         .cornerRadius(8)
@@ -56,33 +61,6 @@ struct HomePage: View {
         }
     }
     
-    func getAverageColor() -> ColorScheme {
-        let imageUrl = URL(string: book.imageURL)!
-        var mode: ColorScheme = .dark
-        
-        URLSession.shared.dataTask(with: imageUrl) { data, response, error in
-            if let data = data {
-                let image = UIImage(data: data)!
-                let average = AverageColor.get(from: image)
-                var red: CGFloat = 0
-                var green: CGFloat = 0
-                var blue: CGFloat = 0
-                var alpha: CGFloat = 0
-
-                average.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-                let luminosity = 0.2126 * red + 0.7152 * green + 0.0722 * blue
-                print(luminosity)
-                if luminosity > 0.5 {
-                    // Use dark text on light background
-                    mode = .light
-                } else {
-                    // Use white text on dark background
-                    mode = .dark
-                }
-            }
-        }.resume()
-        return mode
-    }
 
 }
 
@@ -101,11 +79,11 @@ struct CoverArt: View {
             placeholder: {
             }
         )
-//        .onTapGesture {
-//            withAnimation{
-//                manager.showDetail.toggle()
-//            }
-//        }
+        .onTapGesture {
+            withAnimation{
+                manager.showDetail.toggle()
+            }
+        }
         .cornerRadius(11)
         .frame(width: 386, height: 386)
     }

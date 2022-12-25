@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 struct AverageColor {
     static func get(from image: UIImage) -> UIColor {
@@ -20,5 +21,35 @@ struct AverageColor {
         context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: .RGBA8, colorSpace: nil)
         
         return UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
+    }
+    
+    static func getColor(url: String) -> Color {
+        let imageUrl = URL(string: url)!
+        var mode: Color = Color.black
+        
+        URLSession.shared.dataTask(with: imageUrl) { data, response, error in
+            if let data = data {
+                let image = UIImage(data: data)!
+                let average = AverageColor.get(from: image)
+                var red: CGFloat = 0
+                var green: CGFloat = 0
+                var blue: CGFloat = 0
+                var alpha: CGFloat = 0
+
+                average.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+                let luminosity = 0.2126 * red + 0.7152 * green + 0.0722 * blue
+                print(luminosity)
+                if luminosity > 0.5 {
+                    print("Setting Black")
+                    // Use dark text on light background
+                    mode = Color.black
+                } else {
+                    // Use white text on dark background
+                    print("Setting White")
+                    mode = Color.white
+                }
+            }
+        }.resume()
+        return mode
     }
 }
