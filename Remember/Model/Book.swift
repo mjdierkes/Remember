@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 
 
 struct BookDetails: Identifiable {
@@ -39,7 +40,8 @@ struct BookDetails: Identifiable {
     
     var foreground: Color = .black
     var colorScheme: ColorScheme = .light
-    
+    var image: UIImage
+
     var rating = 4
     var quotes = [Quote]()
     var relatedBooks = [BookDetails]()
@@ -53,10 +55,36 @@ struct BookDetails: Identifiable {
         self.rating = rating
         self.quotes = quotes
         self.relatedBooks = relatedBooks
+    
+        
+        let imageData = try? Data(contentsOf: URL(string: imageURL)!)
+            // Create a UIImage from the data
+            if let imageData {
+                self.image = UIImage(data: imageData)!
+                let average = AverageColor.get(from: image)
+                var red: CGFloat = 0
+                var green: CGFloat = 0
+                var blue: CGFloat = 0
+                var alpha: CGFloat = 0
 
+                average.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+                let luminosity = 0.2126 * red + 0.7152 * green + 0.0722 * blue
+                print("Luminosity", luminosity)
+                if luminosity > 0.5 {
+                    foreground = .black
+                    colorScheme = .light
+                } else {
+                    foreground = .white
+                    colorScheme = .dark
+                }
+            } else {
+                self.image = UIImage()
+            }
     }
     
 }
+
+
 
 struct Quote {
     var value: String

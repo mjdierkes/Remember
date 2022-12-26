@@ -10,6 +10,7 @@ import SwiftUI
 struct SnapCarousel: View {
     @EnvironmentObject var UIState: UIStateModel
     @Binding var items: [Card]
+    @Binding var foreground: Color
 
     var body: some View {
         let spacing: CGFloat = 16
@@ -31,7 +32,7 @@ struct SnapCarousel: View {
                         cardHeight: cardHeight
                     ) {
 //                        CardView(card: item)
-                        MyCard()
+                        MyCard(color: $foreground)
                     }
                     .cornerRadius(8)
                     .transition(AnyTransition.slide)
@@ -145,7 +146,6 @@ struct Canvas<Content : View> : View {
     var body: some View {
         content
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-            .background(Color("BackgroundGray").edgesIgnoringSafeArea(.all))
     }
 }
 

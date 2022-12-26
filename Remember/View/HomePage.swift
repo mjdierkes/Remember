@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct HomePage: View {
     @State private var selection = 0
@@ -27,16 +28,18 @@ struct HomePage: View {
                         ForEach(Array(manager.books.enumerated()), id: \.offset) { index, book in
                             CoverArt(textColor: $textColor, book: book).environmentObject(manager)
                                 .tag(index)
-                                .onAppear {
-                                    AverageColor().getTextColor(forImageAt: book.imageURL) { textColor in
-                                        manager.books[index].foreground = Color(textColor)
-                                        manager.books[index].colorScheme = (textColor == .black) ? .light : .dark
-                                    }
-                                }
+//                                .onAppear {
+//                                    AverageColor().getTextColor(forImageAt: book.imageURL) { textColor in
+//                                        manager.books[index].foreground = Color(textColor)
+//                                        manager.books[index].colorScheme = (textColor == .black) ? .light : .dark
+//                                    }
+//                                }
                         }
                     }
+                    
                     .frame(height: 500)
                     .tabViewStyle(PageTabViewStyle())
+                    
                 } else {
                     DetailPage()
                         .environmentObject(manager)
@@ -47,13 +50,12 @@ struct HomePage: View {
             withAnimation {
                 manager.currentBook = manager.books[newValue]
             }
-            
             let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
         }
         .background {
             AsyncImage(
-                url:URL(string: manager.books[selection].imageURL),
+                url:URL(string: manager.currentBook.imageURL),
                 content: { image in
                     image.resizable()
                         .cornerRadius(8)

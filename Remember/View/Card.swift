@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MyCard: View {
     
+    @Binding var color: Color
+    
     var body: some View {
         VStack(spacing: 20){
             Text("\"Numbing the pain for a while will make it worse when you finally feel it.\"")
@@ -27,7 +29,7 @@ struct MyCard: View {
         .padding(25)
         .background {
             RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.white)
+                .foregroundColor(color)
                 .opacity(0.12)
         }
 

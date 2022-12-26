@@ -36,7 +36,7 @@ struct DetailPage: View {
                         .opacity(0.6)
                         ExpandableText(manager.currentBook.description, lineLimit: 4)
                         
-                        SnapCarousel(items: $manager.cards)
+                        SnapCarousel(items: $manager.cards, foreground: $manager.currentBook.foreground)
                             .environmentObject(model)
                         
                         HStack {
@@ -48,10 +48,10 @@ struct DetailPage: View {
                                         .bold()
                                     Image(systemName: "text.quote")
                                 }
-                                .foregroundColor(.black)
+                                .foregroundColor((manager.currentBook.foreground == .black) ? .white : .black)
                             }
                             .cornerRadius(.infinity)
-                            .tint(.white)
+                            .tint(manager.currentBook.foreground)
                             .buttonStyle(.borderedProminent)
                             
                             Button {
@@ -62,7 +62,7 @@ struct DetailPage: View {
                             }
                             .background {
                                 Circle()
-                                    .foregroundColor(.white)
+                                    .foregroundColor(manager.currentBook.foreground)
                                     .opacity(0.12)
                             }
                             
@@ -137,8 +137,6 @@ struct DetailPage: View {
                 }
                 
             }
-            .preferredColorScheme(.dark)
-//            .foregroundColor(AverageColor.getColor(url: manager.currentBook.imageURL))
             
             HStack {
                 Rectangle()
