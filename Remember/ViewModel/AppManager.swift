@@ -13,17 +13,17 @@ import SwiftUI
     
     @Published var books = [BookDetails]()
     @Published var showDetail = true
-    @Published var currentBook = BookDetails.example
+    @Published var currentBook = BookDetails.example2
     @Published var cards = [Card(id: 2, name: "Dubmledore"),Card(id: 3, name: "Dubmledore")]
     
     
     init() {
-        currentBook.relatedBooks.append(BookDetails.example)
-        currentBook.relatedBooks.append(BookDetails.example)
-        currentBook.relatedBooks.append(BookDetails.example)
-        currentBook.relatedBooks.append(BookDetails.example)
-        currentBook.relatedBooks.append(BookDetails.example)
-        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
 
         books.append(BookDetails.example)
         books.append(BookDetails.example2)

@@ -138,7 +138,7 @@ struct DetailPage: View {
                 
             }
             .preferredColorScheme(.dark)
-            .foregroundColor(AverageColor.getColor(url: manager.currentBook.imageURL))
+//            .foregroundColor(AverageColor.getColor(url: manager.currentBook.imageURL))
             
             HStack {
                 Rectangle()

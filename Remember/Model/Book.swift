@@ -37,8 +37,8 @@ struct BookDetails: Identifiable {
     let author: String
     let releaseDate: String
     
-    let foreground: Color
-    let colorScheme: ColorScheme
+    var foreground: Color = .black
+    var colorScheme: ColorScheme = .light
     
     var rating = 4
     var quotes = [Quote]()
@@ -53,9 +53,7 @@ struct BookDetails: Identifiable {
         self.rating = rating
         self.quotes = quotes
         self.relatedBooks = relatedBooks
-        
-        foreground = AverageColor.getColor(url: imageURL)
-        colorScheme = (foreground == .black) ? .light : .dark
+
     }
     
 }

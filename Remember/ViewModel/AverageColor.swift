@@ -23,10 +23,10 @@ struct AverageColor {
         return UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
     }
     
-    static func getColor(url: String) -> Color {
+    func getTextColor(forImageAt url: String, completion: @escaping (UIColor) -> Void) {
         let imageUrl = URL(string: url)!
-        var mode: Color = Color.black
-        
+        var textColor: UIColor = .black
+
         URLSession.shared.dataTask(with: imageUrl) { data, response, error in
             if let data = data {
                 let image = UIImage(data: data)!
@@ -38,18 +38,16 @@ struct AverageColor {
 
                 average.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
                 let luminosity = 0.2126 * red + 0.7152 * green + 0.0722 * blue
-                print(luminosity)
+                print("Luminosity", luminosity)
                 if luminosity > 0.5 {
-                    print("Setting Black")
-                    // Use dark text on light background
-                    mode = Color.black
+                    textColor = .black
                 } else {
-                    // Use white text on dark background
-                    print("Setting White")
-                    mode = Color.white
+                    textColor = .white
                 }
+                completion(textColor)
+            } else {
+                print("Error downloading image: \(error?.localizedDescription ?? "unknown error")")
             }
         }.resume()
-        return mode
     }
 }
