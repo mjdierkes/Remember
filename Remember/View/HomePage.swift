@@ -28,12 +28,6 @@ struct HomePage: View {
                         ForEach(Array(manager.books.enumerated()), id: \.offset) { index, book in
                             CoverArt(textColor: $textColor, book: book).environmentObject(manager)
                                 .tag(index)
-//                                .onAppear {
-//                                    AverageColor().getTextColor(forImageAt: book.imageURL) { textColor in
-//                                        manager.books[index].foreground = Color(textColor)
-//                                        manager.books[index].colorScheme = (textColor == .black) ? .light : .dark
-//                                    }
-//                                }
                         }
                     }
                     
@@ -69,65 +63,36 @@ struct HomePage: View {
         }
         .foregroundColor(manager.currentBook.foreground)
         .preferredColorScheme(manager.currentBook.colorScheme)
-//        .onAppear {
-//            AverageColor().getTextColor(forImageAt: manager.currentBook.imageURL) { textColor in
-//                withAnimation {
-//                    self.textColor = textColor
-//                }
-//            }
-        }
-//        .preferredColorScheme(manager.currentBook.colorScheme)
-//        .foregroundColor(AverageColor.getColor(url: manager.currentBook.imageURL))
-//        .background {
-//            AsyncImage(
-//                url:URL(string: manager.books[selection].imageURL),
-//                content: { image in
-//                    image.resizable()
-//                        .cornerRadius(8)
-//                        .aspectRatio(contentMode: .fit)
-//                        .blur(radius: 50)
-//                },
-//                placeholder: {
-//                }
-//            )
-//            .frame(width: 1000, height: 1000)
-//        }
     }
     
-struct CoverArt: View {
-    
-    @EnvironmentObject var manager: AppManager
-    @Binding var textColor: Color
-    
-    var book: BookDetails
-    
-    
-    var body: some View {
-        AsyncImage(
-            url:URL(string: book.imageURL),
-            content: { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fit)
-            },
-            placeholder: {
+    struct CoverArt: View {
+        
+        @EnvironmentObject var manager: AppManager
+        @Binding var textColor: Color
+        
+        var book: BookDetails
+        
+        
+        var body: some View {
+            AsyncImage(
+                url:URL(string: book.imageURL),
+                content: { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fit)
+                },
+                placeholder: {
+                }
+            )
+            .onTapGesture {
+                withAnimation{
+                    manager.showDetail.toggle()
+                }
             }
-        )
-        .onTapGesture {
-            withAnimation{
-                manager.showDetail.toggle()
-            }
+            .cornerRadius(11)
+            .frame(width: 386, height: 386)
+            
         }
-        .cornerRadius(11)
-        .frame(width: 386, height: 386)
-//        .onAppear {
-//            AverageColor().getTextColor(forImageAt: book.imageURL) { textColor in
-//                withAnimation {
-//                    self.textColor = Color(textColor)
-//                }
-//            }
-//        }
     }
-    
 }
 
 struct HomePage_Previews: PreviewProvider {

@@ -10,7 +10,6 @@ import SwiftUI
 struct DetailPage: View {
     
     @EnvironmentObject var manager: AppManager
-    @StateObject var model = UIStateModel()
 
     var body: some View {
         
@@ -36,8 +35,20 @@ struct DetailPage: View {
                         .opacity(0.6)
                         ExpandableText(manager.currentBook.description, lineLimit: 4)
                         
-                        SnapCarousel(items: $manager.cards, foreground: $manager.currentBook.foreground)
-                            .environmentObject(model)
+//                        if !manager.currentBook.quotes.isEmpty {
+                            TabView {
+                                ForEach(0..<3) { quote in
+                                    MyCard(color: $manager.currentBook.foreground)
+                                        .padding()
+                                }
+                            }
+                            .padding(-20)
+                            .tabViewStyle(.page(indexDisplayMode: .never))
+                            .frame(height: 175)
+//                        }
+                      
+//                        SnapCarousel(items: $manager.cards, foreground: $manager.currentBook.foreground)
+//                            .environmentObject(model)
                         
                         HStack {
                             Button {
@@ -132,7 +143,6 @@ struct DetailPage: View {
                     }
                     .padding(20)
                     .frame(height: 50)
-//                    .background(.white.opacity(0.12))
                     Spacer()
                 }
                 

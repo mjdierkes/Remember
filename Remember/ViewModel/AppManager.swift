@@ -13,9 +13,7 @@ import SwiftUI
     
     @Published var books = [BookDetails]()
     @Published var showDetail = true
-    @Published var currentBook = BookDetails.example
-    @Published var cards = [Card(id: 2, name: "Dubmledore"),Card(id: 3, name: "Dubmledore")]
-    
+    @Published var currentBook = BookDetails.example    
     
     init() {
         currentBook.relatedBooks.append(BookDetails.example)

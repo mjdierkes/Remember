@@ -28,7 +28,7 @@ struct BookDetails: Identifiable {
     """,
      imageURL: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRHssyxg4DlFMZNDTEBwRAdLlvyM_NxC7ZJy01avfoeurd2QMIsYbkVTM5D4YVpgTbnqOygM1Tbvr5Pcu_buHWPUgMZSBZiNdeXvhtudsU&usqp=CAE",
      author: "James Clear",
-     releaseDate: "2018")
+     releaseDate: "2018", quotes: [Quote(value: "Never let them know your next move.", speaker: "Arnold Tok", pageNumber: "23")])
     
     
     let id = UUID()
@@ -86,7 +86,8 @@ struct BookDetails: Identifiable {
 
 
 
-struct Quote {
+struct Quote: Identifiable {
+    let id = UUID()
     var value: String
     var speaker: String
     var pageNumber: String
