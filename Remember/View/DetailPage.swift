@@ -87,9 +87,7 @@ struct DetailPage: View {
                             HStack(spacing: 0) {
                                 ForEach(0..<5) { i in
                                     Button {
-                                        withAnimation {
-                                            manager.currentBook.rating = i + 1
-                                        }
+                                        manager.currentBook.rating = i + 1
                                     } label: {
                                         Label("", systemImage: (i < manager.currentBook.rating) ?  "star.fill" : "star")
                                             .font(.headline)

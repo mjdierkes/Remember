@@ -13,9 +13,13 @@ struct SearchPage: View {
     @State private var searchText: String = ""
     @EnvironmentObject var router: Router<Path>
 
+    init() {
+        UINavigationBar.appearance().tintColor = .white
+    }
     var body: some View {
         NavigationView {
             VStack(alignment: .leading){
+                SearchFilters()
                 ScrollView(showsIndicators: false) {
                     ForEach(manager.searchBooks, id: \.id) { book in
                         HStack {
@@ -37,15 +41,16 @@ struct SearchPage: View {
             }
             .listStyle(.plain)
             .searchable(text: $searchText)
-            .tint(.white)
             .onChange(of: searchText) { value in
-                Task {
-                    do {
-                        try await manager.loadData(with: value)
-                    } catch {
-                        
+                    Task {
+                        do {
+                            try await manager.loadData(with: value)
+                        } catch {
+                            
+                        }
                     }
-                }
+                if value.isEmpty { manager.searchBooks = [Book]() }
+                
             }
             .background {
                 AsyncImage(
