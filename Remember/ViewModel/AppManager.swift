@@ -12,16 +12,21 @@ import SwiftUI
 @MainActor class AppManager: ObservableObject {
     
     @Published var books = [BookDetails]()
-    @Published var showDetail = true
-    @Published var currentBook = BookDetails.example    
+    @Published var selection = 0
+
+    @Published var currentBook = BookDetails.example
     
+    @Published var searchBooks = [Book]()
+    
+    let bookService = BookService()
+
     init() {
-        currentBook.relatedBooks.append(BookDetails.example)
-        currentBook.relatedBooks.append(BookDetails.example)
-        currentBook.relatedBooks.append(BookDetails.example)
-        currentBook.relatedBooks.append(BookDetails.example)
-        currentBook.relatedBooks.append(BookDetails.example)
-        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
+//        currentBook.relatedBooks.append(BookDetails.example)
 
         books.append(BookDetails.example)
         books.append(BookDetails.example2)
@@ -31,11 +36,12 @@ import SwiftUI
 //        }
         
     }
-    func loadData() async throws {
-//        let bookService = BookService()
-//        let result: SearchResult = try await bookService.fetchData(from: .bookSearch, value: "BarkingUptheWrongTree")
-//        books = result.items
-//        print(result)
+    
+
+    func loadData(with searchTerm: String) async throws {
+        let result: SearchResult = try await bookService.fetchData(from: .bookSearch, value: searchTerm)
+        searchBooks = result.items
+        print(result)
     }
     
 }

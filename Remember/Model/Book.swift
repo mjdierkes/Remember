@@ -69,7 +69,6 @@ struct BookDetails: Identifiable {
 
                 average.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
                 let luminosity = 0.2126 * red + 0.7152 * green + 0.0722 * blue
-                print("Luminosity", luminosity)
                 if luminosity > 0.5 {
                     foreground = .black
                     colorScheme = .light

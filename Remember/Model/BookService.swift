@@ -54,7 +54,7 @@ private actor BookServiceStore {
         self.path = getPath()
         print(url)
 
-        let (data, response) = try await URLSession.shared.data(from: URL(string: url)!)
+        let (data, response) = try await URLSession.shared.data(from: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         
 
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200

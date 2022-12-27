@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MyCard: View {
     
+    @EnvironmentObject var manager: AppManager
     @Binding var color: Color
     
     var body: some View {
@@ -27,11 +28,10 @@ struct MyCard: View {
 
         }
         .padding(25)
-        .background {
-            RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(color)
-                .opacity(0.12)
-        }
+        .background(
+            .regularMaterial,
+                            in: RoundedRectangle(cornerRadius: 8, style: .continuous)
+                        )
 
     }
 }

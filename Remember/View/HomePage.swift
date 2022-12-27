@@ -9,43 +9,57 @@ import SwiftUI
 import UIKit
 
 struct HomePage: View {
-    @State private var selection = 0
+    
+    @EnvironmentObject var router: Router<Path>
+
     @State private var mode: ColorScheme = .dark
-    @StateObject var manager = AppManager()
+    @EnvironmentObject var manager: AppManager
     @State private var textColor: Color = .purple
 
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                if manager.showDetail {
-                    
-                    Text("REMEMBER")
-                        .kerning(5)
-                        .font(.headline)
-                        .offset(x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 30.0)
-                    
-                    TabView(selection: $selection) {
-                        ForEach(Array(manager.books.enumerated()), id: \.offset) { index, book in
-                            CoverArt(textColor: $textColor, book: book).environmentObject(manager)
-                                .tag(index)
-                        }
+                
+                Text("REMEMBER")
+                    .kerning(5)
+                    .font(.headline)
+                    .offset(x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 30.0)
+                
+                TabView(selection: $manager.selection) {
+                    ForEach(Array(manager.books.enumerated()), id: \.offset) { index, book in
+                        CoverArt(textColor: $textColor, book: book).environmentObject(manager)
+                            .tag(index)
                     }
-                    
-                    .frame(height: 500)
-                    .tabViewStyle(PageTabViewStyle())
-                    
-                } else {
-                    DetailPage()
-                        .environmentObject(manager)
                 }
+                
+                .frame(height: 500)
+                .tabViewStyle(PageTabViewStyle())
             }
-        }
-        .onChange(of: selection) { newValue in
-            withAnimation {
-                manager.currentBook = manager.books[newValue]
+            
+            VStack {
+                Spacer()
+                
+                
+                Button {
+                    print(manager.currentBook.title)
+                    withAnimation {
+                        router.updateRoot(root: .B)
+                    }
+                } label: {
+                    Label("", systemImage: "magnifyingglass")
+                        .font(.title2)
+                        .offset(x: 5)
+                }
+                .padding(40)
             }
-            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+            .onChange(of: manager.selection) { newValue in
+                withAnimation {
+                    manager.currentBook = manager.books[newValue]
+                }
+                let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
+            }
+           
         }
         .background {
             AsyncImage(
@@ -60,6 +74,7 @@ struct HomePage: View {
                 }
             )
             .frame(width: 1000, height: 1000)
+            .ignoresSafeArea()
         }
         .foregroundColor(manager.currentBook.foreground)
         .preferredColorScheme(manager.currentBook.colorScheme)
@@ -67,6 +82,7 @@ struct HomePage: View {
     
     struct CoverArt: View {
         
+        @EnvironmentObject var router: Router<Path>
         @EnvironmentObject var manager: AppManager
         @Binding var textColor: Color
         
@@ -84,8 +100,8 @@ struct HomePage: View {
                 }
             )
             .onTapGesture {
-                withAnimation{
-                    manager.showDetail.toggle()
+                withAnimation {
+                    router.updateRoot(root: .C)
                 }
             }
             .cornerRadius(11)

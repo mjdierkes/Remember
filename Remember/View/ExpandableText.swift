@@ -40,7 +40,7 @@ struct ExpandableText: View {
                         .bold()
 //                        .foregroundColor(.blue)
                 
-            }.animation(.easeInOut)
+            }
             .lineLimit(expanded ? nil : lineLimit)
                 .background(
                     // Render the limited text and measure its size

@@ -6,18 +6,19 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct DetailPage: View {
     
     @EnvironmentObject var manager: AppManager
+    @EnvironmentObject var router: Router<Path>
+    @State private var selection = 0
 
     var body: some View {
         
-        ZStack {
-           
-            ZStack {
-                
-                ScrollView {
+//        NavigationView {
+                           
+            ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 10) {
                         Spacer()
                         Text(manager.currentBook.title)
@@ -36,15 +37,20 @@ struct DetailPage: View {
                         ExpandableText(manager.currentBook.description, lineLimit: 4)
                         
 //                        if !manager.currentBook.quotes.isEmpty {
-                            TabView {
+                            TabView(selection: $selection) {
                                 ForEach(0..<3) { quote in
                                     MyCard(color: $manager.currentBook.foreground)
                                         .padding()
                                 }
                             }
-                            .padding(-20)
+                            .onChange(of: selection) { newValue in
+                                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                impactMed.impactOccurred()
+                            }
+                            .padding(.horizontal, -20)
                             .tabViewStyle(.page(indexDisplayMode: .never))
-                            .frame(height: 175)
+                            .frame(height: 160)
+                            .padding(.vertical, 10)
 //                        }
                       
 //                        SnapCarousel(items: $manager.cards, foreground: $manager.currentBook.foreground)
@@ -59,10 +65,10 @@ struct DetailPage: View {
                                         .bold()
                                     Image(systemName: "text.quote")
                                 }
-                                .foregroundColor((manager.currentBook.foreground == .black) ? .white : .black)
+                                .foregroundColor(manager.currentBook.foreground)
                             }
                             .cornerRadius(.infinity)
-                            .tint(manager.currentBook.foreground)
+                            .tint((manager.currentBook.foreground == .black) ? .white : .black)
                             .buttonStyle(.borderedProminent)
                             
                             Button {
@@ -71,11 +77,10 @@ struct DetailPage: View {
                                 Image(systemName: "rectangle.stack.fill.badge.plus")
                                     .padding(7)
                             }
-                            .background {
-                                Circle()
-                                    .foregroundColor(manager.currentBook.foreground)
-                                    .opacity(0.12)
-                            }
+                            .background(
+                                .regularMaterial,
+                                                in: Circle()
+                                            )
                             
                             Spacer()
                             
@@ -121,51 +126,56 @@ struct DetailPage: View {
 
                         Spacer()
                     }
-                    .padding(20)
+                    .padding(.horizontal, 20)
                 }
-                .offset(y: 40)
-
-                VStack {
-                    HStack{
-                        Button {
-                            withAnimation  {
-                                manager.showDetail.toggle()
-                            }
-                        } label: {
-                            Label("", systemImage: "chevron.backward")
-                                .font(.title2)
-                        }
-                        Spacer()
-                        Button {} label: {
-                            Label("", systemImage: "square.and.arrow.up")
-                                .font(.title2)
-                        }
-                    }
-                    .padding(20)
-                    .frame(height: 50)
-                    Spacer()
-                }
+                .foregroundColor(manager.currentBook.foreground)
                 
+                        .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem {
+                    Button("Done") {
+                       withAnimation {
+                           router.updateRoot(root: .A)
+                       }
+                   }
+                   .tint(manager.currentBook.foreground)
+                }
             }
-            
-            HStack {
-                Rectangle()
-                    .foregroundColor(.white).opacity(0.0001)
-                    .frame(width: 20)
-                    .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
-                        .onEnded { value in
-                            print(value)
-                            let horizontalAmount = value.translation.width
-                            if horizontalAmount > 0 {
-                                withAnimation {
-                                    manager.showDetail.toggle()
-                                }
-                            }
-                        })
-                Spacer()
+            .preferredColorScheme(manager.currentBook.colorScheme)
+            .toolbarColorScheme(manager.currentBook.colorScheme, for: .navigationBar)
+            .background {
+                AsyncImage(
+                    url:URL(string: manager.currentBook.imageURL),
+                    content: { image in
+                        image.resizable()
+                            .cornerRadius(8)
+                            .aspectRatio(contentMode: .fit)
+                            .blur(radius: 50)
+                    },
+                    placeholder: {
+                    }
+                )
+                .frame(width: 1000, height: 1000)
+                .ignoresSafeArea()
             }
+//            HStack {
+//                Rectangle()
+//                    .foregroundColor(.white).opacity(0.0001)
+//                    .frame(width: 20)
+//                    .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
+//                        .onEnded { value in
+//                            print(value)
+//                            let horizontalAmount = value.translation.width
+//                            if horizontalAmount > 0 {
+//                                withAnimation {
+//                                    router.updateRoot(root: .C)
+//                                }
+//                            }
+//                        })
+//                Spacer()
+//            }
             
-        }
+//        }
 
 
     }
@@ -173,6 +183,6 @@ struct DetailPage: View {
 
 struct DetailPage_Previews: PreviewProvider {
     static var previews: some View {
-        HomePage()
+        SwiftUIView()
     }
 }
