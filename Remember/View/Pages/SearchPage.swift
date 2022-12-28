@@ -74,7 +74,7 @@ struct SearchPage: View {
             .toolbar {
                 Button("Done") {
                     withAnimation {
-                        router.updateRoot(root: .A)
+                        router.updateRoot(root: .HomePage)
                     }
                 }
                 .tint(manager.currentBook.foreground)

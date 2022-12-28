@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyCard: View {
+struct QuoteCard: View {
     
     @EnvironmentObject var manager: AppManager
     @Binding var color: Color
@@ -25,13 +25,9 @@ struct MyCard: View {
                     .bold()
             }
             .font(.subheadline)
-
         }
         .padding(25)
-        .background(
-            .regularMaterial,
-                            in: RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        )
+        .background( .regularMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
 
     }
 }

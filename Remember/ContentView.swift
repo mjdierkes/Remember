@@ -7,30 +7,30 @@
 
 import SwiftUI
 
-struct SwiftUIView: View {
+struct ContentView: View {
     
-    @ObservedObject var router = Router<Path>(root: .C)
+    @ObservedObject var router = Router<Path>(root: .DetailPage)
     @StateObject var manager = AppManager()
 
     var body: some View {
         RouterView(router: router) { path in
             switch path {
-            case .A: HomePage().environmentObject(manager)
-            case .B: SearchPage().environmentObject(manager)
-            case .C: DetailPage().environmentObject(manager)
+            case .HomePage: HomePage().environmentObject(manager)
+            case .SearchPage: SearchPage().environmentObject(manager)
+            case .DetailPage: DetailPage().environmentObject(manager)
             }
         }
     }
 }
 
 enum Path {
-    case A
-    case B
-    case C
+    case HomePage
+    case SearchPage
+    case DetailPage
 }
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        SwiftUIView()
+        ContentView()
     }
 }

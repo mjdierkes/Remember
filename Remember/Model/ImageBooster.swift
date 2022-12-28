@@ -1,5 +1,5 @@
 //
-//  Test.swift
+//  ImageBooster.swift
 //  Remember
 //
 //  Created by Mason Dierkes on 12/24/22.
